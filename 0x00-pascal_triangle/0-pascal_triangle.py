@@ -2,6 +2,8 @@
 """
 this module define pascal triangle of any number n
 """
+
+
 def pascal_triangle(n):
     """This function return a pascal triagle of the nth argument"""
     if n <= 0:

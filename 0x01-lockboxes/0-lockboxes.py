@@ -9,15 +9,21 @@ def canUnlockAll(boxes):
     this method check if all box can unlock and returns
         True or False
     """
-    keys = {0}  # Start with the keys to open the first box
-    visited = set()
+    if not boxes or not boxes[0]:
+        return False  # No boxes or the first box is empty
 
-    while keys:
-        current_key = keys.pop()
-        visited.add(current_key)
+    keys = set([0])  # Start with the keys to open the first box
+    visited = set([0])  # Keep track of visited boxes
 
-        for new_key in boxes[current_key]:
-            if new_key not in visited:
-                keys.add(new_key)
+    queue = [0]  # Use a queue for BFS
+
+    while queue:
+        current_box = queue.pop()
+
+        for key in boxes[current_box]:
+            if key not in visited:
+                visited.add(key)
+                keys.add(key)
+                queue.append(key)
 
     return len(visited) == len(boxes)

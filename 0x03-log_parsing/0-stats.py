@@ -14,7 +14,8 @@ from collections import defaultdict
 
 def signal_handler(sig, frame):
     """
-    Handles the SIGINT signal by printing the statistics and exiting the program.
+    Handles the SIGINT signal by printing the statistics
+    and exiting the program.
     """
     print_stats()
     sys.exit(0)

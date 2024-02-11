@@ -20,17 +20,18 @@ def is_safe(board, row, col, n):
 
 
 def solve_nq_util(board, col, n, solutions):
-    """Recursively solve the N-Queens problem."""
     if col == n:
-        rec = [(i, j) for i in range(n) for j in range(n) if board[i][j] == 1]
-        solutions.append(rec)
+        sol = [(i, j) for i in range(n) for j in range(n) if board[i][j] == 1]
+        solutions.append(sol)
         return True
     for i in range(n):
         if is_safe(board, i, col, n):
-            board[i][col] = 1
-            if solve_nq_util(board, col + 1, n, solutions):
+            board[i][col] =  1
+
+            if solve_nq_util(board, col +  1, n, solutions):
                 return True
-            board[i][col] = 0
+
+            board[i][col] =  0
     return False
 
 
@@ -48,11 +49,14 @@ def solve_nq(n):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        raise SystemExit("Usage: python script.py N")
+        print("Usage: nqueens N")
+        sys.exit(1)
     try:
         n = int(sys.argv[1])
     except ValueError:
-        raise SystemExit("N must be an integer.")
+        print("N must be an integer.")
+        sys.exit(1)
+
     solutions = solve_nq(n)
     for solution in solutions:
         print([[i, j] for i, j in solution])

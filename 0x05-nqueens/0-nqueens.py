@@ -55,4 +55,4 @@ if __name__ == "__main__":
         raise SystemExit("N must be an integer.")
     solutions = solve_nq(n)
     for solution in solutions:
-        print(solution)
+        print([[i, j] for i, j in solution])

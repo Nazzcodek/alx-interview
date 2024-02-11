@@ -26,12 +26,12 @@ def solve_nq_util(board, col, n, solutions):
         return True
     for i in range(n):
         if is_safe(board, i, col, n):
-            board[i][col] =  1
+            board[i][col] = 1
 
-            if solve_nq_util(board, col +  1, n, solutions):
+            if solve_nq_util(board, col + 1, n, solutions):
                 return True
 
-            board[i][col] =  0
+            board[i][col] = 0
     return False
 
 

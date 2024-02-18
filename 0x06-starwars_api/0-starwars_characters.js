@@ -1,30 +1,31 @@
 #!/usr/bin/node
-const axios = require('axios');
+const request = require('request');
 const urlFilm = 'https://swapi-api.hbtn.io/api/films/';
 const urlMovie = `${urlFilm}${process.argv[2]}/`;
 
-async function fetchFilmCharacters(url) {
-  try {
-    const response = await axios.get(url);
-    const characters = response.data.characters;
-
-    if (characters && characters.length >  0) {
-      await fetchCharacterNames(characters);
-    }
-  } catch (error) {
-    console.error(error);
+request(urlMovie, function (error, response, body) {
+  if (error) {
+    console.error('Error:', error);
+    return;
   }
-}
 
-async function fetchCharacterNames(characters) {
-  for (const characterUrl of characters) {
-    try {
-      const response = await axios.get(characterUrl);
-      console.log(response.data.name);
-    } catch (error) {
-      console.error('error:', error);
-    }
+  const filmData = JSON.parse(body);
+  const characters = filmData.characters;
+
+  if (characters && characters.length >  0) {
+    characters.forEach(function(characterUrl, index) {
+      request(characterUrl, function (error, response, body) {
+        if (error) {
+          console.error('Error:', error);
+          return;
+        }
+
+        const characterData = JSON.parse(body);
+        console.log(characterData.name);
+      });
+    });
+  } else {
+    console.log('No characters found for this movie.');
   }
-}
+});
 
-fetchFilmCharacters(urlMovie);

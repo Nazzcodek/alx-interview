@@ -3,15 +3,12 @@
 
 
 def rotate_2d_matrix(matrix):
-    """this method rotate 2d matrix"""
-    n = len(matrix[0])
+    """This method rotates a  2D matrix  90 degrees clockwise in place."""
+    n = len(matrix)
 
-    new_mat = [[None] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(i, n):
+            matrix[j][i], matrix[i][j] = matrix[i][j], matrix[j][i]
 
-    for col in range(n - 1, -1, -1):
-        for row in range(0, n):
-            new_mat[row][n - col - 1] = matrix[row][col]
-
-            matrix[row].pop(0)
-
-        matrix[row], new_mat[row] = new_mat[row], matrix[row]
+    for i in range(n):
+        matrix[i] = matrix[i][::-1]

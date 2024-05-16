@@ -1,4 +1,4 @@
-#!/usr/bin/env pyhton3
+#!/usr/bin/pyhton3
 def isWinner(x, nums):
     def isPrime(num):
         if num < 2:

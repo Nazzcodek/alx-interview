@@ -1,6 +1,9 @@
 #!/usr/bin/pyhton3
 """
-the prime game model between Ben and Maria"""
+the prime game model between Ben and Maria
+"""
+
+
 def isWinner(x, nums):
     """the main function"""
     def isPrime(num):

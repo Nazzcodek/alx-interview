@@ -1,6 +1,10 @@
 #!/usr/bin/pyhton3
+"""
+the prime game model between Ben and Maria"""
 def isWinner(x, nums):
+    """the main function"""
     def isPrime(num):
+        """this method check if the number is a prime number"""
         if num < 2:
             return False
         for i in range(2, int(num ** 0.5) + 1):
@@ -9,6 +13,7 @@ def isWinner(x, nums):
         return True
 
     def getPrimes(n):
+        """get prime number of an integer"""
         primes = []
         for i in range(2, n + 1):
             if isPrime(i):
@@ -16,6 +21,7 @@ def isWinner(x, nums):
         return primes
 
     def playGame(n):
+        """play the game"""
         primes = getPrimes(n)
         if len(primes) % 2 == 0:
             return "Ben"
